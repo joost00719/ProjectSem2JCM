@@ -5,12 +5,15 @@
     </title>
     <style>
         body{
-            background: darkslategrey;
+            background: black;
             color: grey;
             font-size: 1.5em;
         }
         code{
             color: white;
+        }
+        span{
+            color: purple;
         }
     </style>
 </head>
@@ -30,7 +33,7 @@
     also <br />
     Download XAMPP en install hiervan de Apache en de SQL pakketen. <br />
     <a href="https://www.apachefriends.org/index.html">https://www.apachefriends.org/index.html</a> <br />
-    Dit is omdat je anders een hele rare pagina krijgt. sinds de PHPStorm server geen XML bestanden kan uitlezen blijkbaar <br />
+    Dit is omdat je anders een hele rare pagina krijgt. sinds de PHPStorm server geen XML bestanden kan uitlezen en dat <span>$_GET</span> requests bugged zijn <br />
     later is dit ook makkelijker met de SQL server omdat we dan allemaal dezelfde username kunnen pakken.<br />
     <br />
 
