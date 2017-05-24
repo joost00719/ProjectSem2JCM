@@ -6,8 +6,11 @@
     <style>
         body{
             background: darkslategrey;
-            color: lightgrey;
+            color: grey;
             font-size: 1.5em;
+        }
+        code{
+            color: white;
         }
     </style>
 </head>
@@ -36,7 +39,7 @@
     Ga daarna naar config en klik <code>Service and Port Settings</code>. <br />
     Vervang dan bij Apache de <code>Main port</code> die bij default op <code>80</code> staat voor <code>8080</code> <br />
     <img src="assets/images/Screenshot_1853.png"> <br />
-    Zodra je dit allemaal gedaan hebt moet je even dit hele project verwijderen (hele map). opnieuw die tutorial die ik door stuurde <br />
+    Zodra je dit allemaal gedaan hebt moet je even dit hele project verwijderen (hele map). opnieuw <a href="assets/images/Screenshot_1852.png">die tutorial</a> die ik door stuurde <br />
     in plaatjes doorlopen en als map moet je <code>C:\xampp\htdocs</code> kiezen en daar in pullen <br />
     Sorry voor al het gedoe, als alles werkt en je hebt Apache en SQL draaient kun je bij de website via <br />
     <a href="http://localhost:8080">http://localhost:8080:8080</a> <br />
