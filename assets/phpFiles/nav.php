@@ -7,19 +7,19 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="home">Home</a>
+        <a class="navbar-brand" href="index.php">Home</a>
     </div>
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
             <li>
-                <a href="over">Over</a>
+                <a href="over.php">Over</a>
             </li>
             <li>
-                <a href="forums">Forums</a>
+                <a href="forums.php">Forums</a>
             </li>
             <li>
-                <a href="contact">Contact</a>
+                <a href="contact.php">Contact</a>
             </li>
         </ul>
     </div>
