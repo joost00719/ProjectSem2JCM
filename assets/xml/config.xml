@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data>
+    <!-- Slider speed in ms -->
+    <homeLocationURL>http://joostr.ddns.net/DutchInfinity/</homeLocationURL>
+    <sliderSpeed>7000</sliderSpeed> <!-- in ms -->
+    <title>test123</title>
+</data>

@@ -1,0 +1,10 @@
+Hoii :D
+
+Ik heb hier een template die ik had gebruikt, ik ga 'm nog wel aanpassen deze week.
+Bij assets staat een mapje met XML, hier staat de content in en die wordt door PHP eruit gehaald.
+Ik ga dit nog veranderen naar een SQL database, ik ga kijken of ik hem op Cloud9 kan krijgen en jullie daar
+aan toevoegen, en kijken of jullie ook zo kunnen pullen op Cloud9.
+AUB ook je naam onder je commit + push zetten.
+
+Groetjes
+Joost :D

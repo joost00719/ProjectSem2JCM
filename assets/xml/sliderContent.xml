@@ -1,0 +1,22 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<data>
+    <slider1>
+        <image>
+            code_banner.png
+        </image>
+        <text>
+            Schoolproject
+        </text>
+    </slider1>
+
+    <slider2>
+        <image>
+            server_room.jpg
+        </image>
+        <text>
+            Joost, Cees en Maverick
+        </text>
+    </slider2>
+
+
+</data>
