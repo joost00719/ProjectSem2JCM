@@ -46,9 +46,9 @@
     en bij PhpMyAdmin (database overzicht) via <br />
     <a href="http://localhost:8080/phpmyadmin">http://localhost:8080:8080/phpmyadmin</a> <br />
 </p>
+<hr>
 <p>
     Als je denkt dat het onzin is dat de site er dan raar uit ziet, <a href="assets/images/screencapture-joostr-ddns-net-projectSem2JCM-index-php-1495656632577.png">hier</a>, zo ziet hij er normaal uit
 </p>
-<hr>
 </body>
 </html>
