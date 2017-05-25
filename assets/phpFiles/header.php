@@ -8,8 +8,6 @@
 
     for ($i = 1; $i < (sqlQuery("slider", "count(*)") +1); $i++) {
     ?>
-
-
         <!-- Slider -->
     <div class="item <?php if($i==1){echo 'active';}?>">
             <div class="fill" style="background-image:url(assets/images/<?= sqlQuery("slider","Picture","ID = $i"); ?>)"></div>

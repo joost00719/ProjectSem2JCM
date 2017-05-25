@@ -49,20 +49,21 @@ require "assets/phpFiles/functions.php";
 
     <!-- Page Content -->
     <?php
-    //  Text splitter
+    //  Text splitter, returned array.
     $artikelText = stringCutter(sqlQuery("artikel","text", "Pagina = 'index'"));
-
-
     ?>
     <div class="container" style="padding:20px;>
 
         <div class="row">
             <div class="col-lg-12">
+                        <!-- Titel van het artikel -->
                     <div class="col-xs-12"><h1> <?= sqlQuery("artikel", "h1", "pagina = 'index'"); ?> </h1></div>
                 <div class="col-md-6 col-sm-12">
+                    <!-- Linker kant van artikel -->
                     <div class="col-xs-12" style="text-align: justify"><?= $artikelText[0]; ?></div>
                 </div>
                 <div class="col-md-6 col-sm-12">
+                    <!-- Rechter kant van het artikel -->
                     <div class="col-xs-12" style="text-align: justify"><?= $artikelText[1]; ?></div>
                 </div>
 
