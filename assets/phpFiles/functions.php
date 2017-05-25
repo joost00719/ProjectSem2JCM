@@ -83,13 +83,24 @@ function sqlQuery($table, $column, $where='1=1')
 
 }
 
+//  Dit stukje code zorgt ervoor voor als we iets toevoegen of iets uit de database verwijderen van slider
+//  dat het id gewoon goed blijft, dit wordt telkens uitgevoerd wanneer de pagnia wordt geopend (inefficient as fuck, i know)
+//  maar dit werkt dus don't touch it, is voor het gemak van de database aanpassen enzo.
+$pdo = connectDatabase('projects2');
+$query = "SET @num := 0; UPDATE slider SET id = @num := (@num+1); ALTER TABLE slider AUTO_INCREMENT = 1;";
+try {
+    $sql = $query;
+    $result = $pdo->query($sql);
+} catch (PDOException $e) {
+    die('Er is een probleem met ophalen van de plaatjes: ' . $e->getMessage());
+}
+
 
 //Cut string in 2 stukken in het midden.
 //ripped functie
 //nog niet getest
-function CutStringInHalf($text)
+function stringCutter($text)
 {
-    $text = "The Quick : Brown Fox Jumped Over The Lazy / Dog";
 
     $splitstring1 = substr($text, 0, floor(strlen($text) / 2));
     $splitstring2 = substr($text, floor(strlen($text) / 2));
@@ -104,16 +115,4 @@ function CutStringInHalf($text)
     $string2 = substr($text, $middle);  // "Over The Lazy / Dog"
 
     return array($string1, $string2);
-}
-
-//  Dit stukje code zorgt ervoor voor als we iets toevoegen of iets uit de database verwijderen van slider
-//  dat het id gewoon goed blijft, dit wordt telkens uitgevoerd wanneer de pagnia wordt geopend (inefficient as fuck, i know)
-//  maar dit werkt dus don't touch it, is voor het gemak van de database aanpassen enzo.
-$pdo = connectDatabase('projects2');
-$query = "SET @num := 0; UPDATE slider SET id = @num := (@num+1); ALTER TABLE slider AUTO_INCREMENT = 1;";
-try {
-    $sql = $query;
-    $result = $pdo->query($sql);
-} catch (PDOException $e) {
-    die('Er is een probleem met ophalen van de plaatjes: ' . $e->getMessage());
 }

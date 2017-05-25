@@ -12,7 +12,7 @@ require "assets/phpFiles/functions.php";
     <meta name="description" content="">
     <meta name="author" content="Joost R, Cees M, Maverick D">
 
-    <title><?=$xmlConfig['title']; ?></title>
+    <title><?= sqlQuery("config", "ConfigValue", "ConfigIndex = 'Titel'"); ?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -48,18 +48,22 @@ require "assets/phpFiles/functions.php";
 
 
     <!-- Page Content -->
+    <?php
+    //  Text splitter
+    $artikelText = stringCutter(sqlQuery("artikel","text", "Pagina = 'index'"));
 
+
+    ?>
     <div class="container" style="padding:20px;>
 
         <div class="row">
             <div class="col-lg-12">
+                    <div class="col-xs-12"><h1> <?= sqlQuery("artikel", "h1", "pagina = 'index'"); ?> </h1></div>
                 <div class="col-md-6 col-sm-12">
-                    <div class="col-xs-12"><h1> <?= $xmlArticle['home1']['h1']; ?> </h1></div>
-                    <div class="col-xs-12" style="text-align: justify"><?= $xmlArticle['home1']['p']; ?></div>
+                    <div class="col-xs-12" style="text-align: justify"><?= $artikelText[0]; ?></div>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <div class="col-xs-12"><h1> <?= $xmlArticle['home2']['h1']; ?> </h1></div>
-                    <div class="col-xs-12" style="text-align: justify"><?= $xmlArticle['home2']['p']; ?></div>
+                    <div class="col-xs-12" style="text-align: justify"><?= $artikelText[1]; ?></div>
                 </div>
 
 
@@ -87,7 +91,7 @@ require "assets/phpFiles/functions.php";
     <!-- Script to Activate the Carousel -->
     <script>
     $('.carousel').carousel({
-        interval: 7000 //changes the speed
+        interval: <?= sqlQuery("config", "ConfigValue", "ConfigIndex = 'SliderSpeed'"); ?> //changes the speed
     })
     </script>
 </body>
