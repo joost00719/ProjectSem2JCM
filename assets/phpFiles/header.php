@@ -3,23 +3,18 @@
 
     <!-- Slides + indicators -->
     <?php
-    for ($i = 1;
-    $i < (count($xmlSliderContent) + 1);
-    $i++) {
+    //haalt de database table slider uit database en zet in $sliderDB
 
 
-    if(!isset($xmlSliderContent["slider$i"]['image'])){
-        $xmlSliderContent["slider$i"]['image'] = "";
-    }
-    if(!isset($xmlSliderContent["slider$i"]['text'])){
-        $xmlSliderContent["slider$i"]['text'] = "";
-    }
+    for ($i = 1; $i < (sqlQuery("slider", "count(*)") +1); $i++) {
     ?>
+
+
         <!-- Slider -->
     <div class="item <?php if($i==1){echo 'active';}?>">
-            <div class="fill" style="background-image:url(assets/images/<?= $xmlSliderContent["slider$i"]['image']; ?>)"></div>
+            <div class="fill" style="background-image:url(assets/images/<?= sqlQuery("slider","Picture","ID = $i"); ?>)"></div>
             <div class="carousel-caption">
-                <h2> <?= $xmlSliderContent["slider$i"]['text']; ?> </h2>
+                <h2> <?= sqlQuery("slider","Text", "ID = $i"); ?> </h2>
             </div>
         </div>
         <?php } ?>
@@ -29,7 +24,7 @@
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <?php
             //indicators for slides
-            for ($i = 1; $i < count($xmlSliderContent); $i++) { ?>
+            for ($i = 1; $i < sqlQuery("slider", "count(*)"); $i++) { ?>
                 <li data-target="#myCarousel" data-slide-to="<?= $i; ?>"></li>
                 <?php } ?>
         </ol>

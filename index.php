@@ -1,5 +1,5 @@
 <?php
-require "functions.php";
+require "assets/phpFiles/functions.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +10,7 @@ require "functions.php";
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Joost R">
+    <meta name="author" content="Joost R, Cees M, Maverick D">
 
     <title><?=$xmlConfig['title']; ?></title>
 
@@ -40,7 +40,15 @@ require "functions.php";
     <header id="myCarousel" class="carousel slide">
         <?php require 'assets/phpFiles/header.php'; ?>
     </header>
+    <?php
+    sqlQuery("slider", "count(*)");
+
+
+    ?>
+
+
     <!-- Page Content -->
+
     <div class="container" style="padding:20px;>
 
         <div class="row">
@@ -79,7 +87,7 @@ require "functions.php";
     <!-- Script to Activate the Carousel -->
     <script>
     $('.carousel').carousel({
-        interval: <?=$xmlConfig['sliderSpeed'];?> //changes the speed
+        interval: 7000 //changes the speed
     })
     </script>
 </body>

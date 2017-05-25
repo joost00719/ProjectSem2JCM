@@ -1,5 +1,5 @@
 <?php
-require "functions.php";
+require "assets/phpFiles/functions.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">
