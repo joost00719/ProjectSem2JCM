@@ -105,3 +105,15 @@ function CutStringInHalf($text)
 
     return array($string1, $string2);
 }
+
+//  Dit stukje code zorgt ervoor voor als we iets toevoegen of iets uit de database verwijderen van slider
+//  dat het id gewoon goed blijft, dit wordt telkens uitgevoerd wanneer de pagnia wordt geopend (inefficient as fuck, i know)
+//  maar dit werkt dus don't touch it, is voor het gemak van de database aanpassen enzo.
+$pdo = connectDatabase('projects2');
+$query = "SET @num := 0; UPDATE slider SET id = @num := (@num+1); ALTER TABLE slider AUTO_INCREMENT = 1;";
+try {
+    $sql = $query;
+    $result = $pdo->query($sql);
+} catch (PDOException $e) {
+    die('Er is een probleem met ophalen van de plaatjes: ' . $e->getMessage());
+}
