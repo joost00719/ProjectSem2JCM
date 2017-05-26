@@ -12,7 +12,7 @@ require "assets/phpFiles/functions.php";
     <meta name="description" content="">
     <meta name="author" content="Joost R, Cees M, Maverick D">
 
-    <title><?= sqlQuery("config", "ConfigValue", "ConfigIndex = 'Titel'"); ?></title>
+    <title><?= $title ?></title>
 
     <!-- Bootstrap Core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -27,11 +27,9 @@ require "assets/phpFiles/functions.php";
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
-
 </head>
 
 <body>
-
     <!-- Navigation -->
     <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <?php include 'assets/phpFiles/nav.php'; ?>
@@ -40,49 +38,33 @@ require "assets/phpFiles/functions.php";
     <header id="myCarousel" class="carousel slide">
         <?php require 'assets/phpFiles/header.php'; ?>
     </header>
-    <?php
-    sqlQuery("slider", "count(*)");
-
-
-    ?>
-
-
     <!-- Page Content -->
     <?php
     //  Text splitter, returned array.
-    $artikelText = stringCutter(sqlQuery("artikel","text", "Pagina = 'index'"));
+    $ArticleCutted = stringCutter($articleHomeText);
     ?>
-    <div class="container" style="padding:20px;>
-
+    <div class="container" style="padding:20px;">
         <div class="row">
             <div class="col-lg-12">
                         <!-- Titel van het artikel -->
-                    <div class="col-xs-12"><h1> <?= sqlQuery("artikel", "h1", "pagina = 'index'"); ?> </h1></div>
+                    <div class="col-xs-12"><h1> <?= $articleHomeH1; ?> </h1></div>
                 <div class="col-md-6 col-sm-12">
                     <!-- Linker kant van artikel -->
-                    <div class="col-xs-12" style="text-align: justify"><?= $artikelText[0]; ?></div>
+                    <div class="col-xs-12" style="text-align: justify"><?= $ArticleCutted[0]; ?></div>
                 </div>
                 <div class="col-md-6 col-sm-12">
                     <!-- Rechter kant van het artikel -->
-                    <div class="col-xs-12" style="text-align: justify"><?= $artikelText[1]; ?></div>
+                    <div class="col-xs-12" style="text-align: justify"><?= $ArticleCutted[1]; ?></div>
                 </div>
-
-
-
             </div>
         </div>
-
-
-
-        <hr>
         <!-- Footer -->
+
         <footer>
             <?php require 'assets/phpFiles/footer.php'; ?>
         </footer>
-
     </div>
     <!-- /.container -->
-
     <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
@@ -92,7 +74,7 @@ require "assets/phpFiles/functions.php";
     <!-- Script to Activate the Carousel -->
     <script>
     $('.carousel').carousel({
-        interval: <?= sqlQuery("config", "ConfigValue", "ConfigIndex = 'SliderSpeed'"); ?> //changes the speed
+        interval: <?= $sliderSpeed ?> //changes the speed
     })
     </script>
 </body>

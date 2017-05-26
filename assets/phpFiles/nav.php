@@ -16,11 +16,12 @@
                 <a href="over.php">Over</a>
             </li>
             <li>
-                <a href="forums.php">Forums</a>
+                <a href="Contact.php">Contact</a>
             </li>
             <li>
-                <a href="contact.php">Contact</a>
+                <a href="login.php"><?= $loggedInUser ?></a>
             </li>
+
         </ul>
     </div>
     <!-- /.navbar-collapse -->

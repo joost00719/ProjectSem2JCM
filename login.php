@@ -1,5 +1,8 @@
 <?php
 require "assets/phpFiles/functions.php";
+if(!isset($_SESSION['LoggedIn'])) {
+    $_SESSION['LoggedIn'] = false;
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +23,18 @@ require "assets/phpFiles/functions.php";
     <!-- Custom CSS -->
     <link href="css/half-slider.css" rel="stylesheet">
     <link href="css/stylesheet.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Javascript for login -->
+    <script src="js/loginSubmit.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -39,38 +54,54 @@ require "assets/phpFiles/functions.php";
     <?php require 'assets/phpFiles/header.php'; ?>
 </header>
 <!-- Page Content -->
-<?php
-//  Text splitter, returned array.
-$ArticleCutted = stringCutter($articleHomeText);
-?>
-<div class="container" style="padding:20px;>
+<div class="container" style="padding:20px;">
 
-        <div class="row">
-<div class="col-lg-12">
-    <!-- Titel van het artikel -->
-    <div class="col-xs-12"><h1> <?= $articleHomeH1; ?> </h1></div>
-    <div class="col-md-6 col-sm-12">
-        <!-- Linker kant van artikel -->
-        <div class="col-xs-12" style="text-align: justify"><?= $ArticleCutted[0]; ?></div>
-    </div>
-    <div class="col-md-6 col-sm-12">
-        <!-- Rechter kant van het artikel -->
-        <div class="col-xs-12" style="text-align: justify"><?= $ArticleCutted[1]; ?></div>
-    </div>
+    <?php
+    if($_SESSION['LoggedIn'] == false){
+    ?>
+    <div id="loginContainer">
+        <!-- Inlog formulier -->
+        <form id="loginForm" method="post">
+            <h4>
+                Login
+            </h4>
+            <hr>
+            Username: <br/>
+            <input type="text" name="inputUsername" class="loginInputValue" id="inputUsername"> <br/>
+            Password: <br/>
+            <input type="password" name="inputPassword" class="loginInputValue" id="inputPassword"> <br/>
+            <input type="submit" class="loginSubmit" value="Inloggen" onsubmit="return false" ">
+        </form>
+        <?php
+        if (isset($_POST['inputUsername']) && isset($_POST['inputPassword'])) {
+            $inputUsername = $_POST['inputUsername'];
+            $inputPassword = $_POST['inputPassword'];
+            echo login($inputUsername, $inputPassword);
+        }
+
+        } else {
+            ?>
+            <div id="userSettings">
+                <h3>
+                    Welkom op het gebruikerspaneel, <?= $loggedInUser; ?>
+                </h3>
+
+
+
+
+
+            </div>
+            <?php
+        }
+        ?>
 </div>
-</div>
-<hr>
 <!-- Footer -->
 <footer>
     <?php require 'assets/phpFiles/footer.php'; ?>
 </footer>
 </div>
 <!-- /.container -->
-<!-- jQuery -->
-<script src="js/jquery.js"></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="js/bootstrap.min.js"></script>
 
 <!-- Script to Activate the Carousel -->
 <script>
@@ -80,3 +111,4 @@ $ArticleCutted = stringCutter($articleHomeText);
 </script>
 </body>
 </html>
+

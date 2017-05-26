@@ -1,32 +1,27 @@
 <?php
-$xmlArticle=XML2Array('assets/xml/articles.xml');
+session_start();
+//  Variabele voor makkelijk gebruik in de HTML
 
+    //configs
+$title = sqlQuery("config", "ConfigValue", "ConfigIndex = 'Titel'");
+$sliderSpeed = sqlQuery("config", "ConfigValue", "ConfigIndex = 'SliderSpeed'");
+
+    //artikels
+$articleHomeH1 = sqlQuery("artikel", "h1", "pagina = 'index'");
+$articleHomeText = sqlQuery("artikel","text", "Pagina = 'index'");
+
+
+
+//  pre defined variables
+if(isset($_SESSION['username'])){
+    $loggedInUser = $_SESSION['username'];
+}else {
+    $loggedInUser = "Login";
+}
 
 
 
 //functions
-//XML naar SQL
-function XML2Array($xml, $recursive = false) //ripped function
-{
-    if (!$recursive) {
-        $array = simplexml_load_file($xml);
-    } else {
-        $array = $xml;
-    }
-
-    $newArray = array();
-    $array = ( array )$array;
-    foreach ($array as $key => $value) {
-        $value = ( array )$value;
-        if (isset ($value [0])) {
-            $newArray [$key] = trim($value [0]);
-        } else {
-            $newArray [$key] = XML2Array($value, true);
-        }
-    }
-    return $newArray;
-};
-
 
 //haalt jaar op
 function getYear(){
@@ -71,8 +66,7 @@ function sqlQuery($table, $column, $where='1=1')
     $pdo = connectDatabase('projects2');
     $query = "SELECT $column FROM $table WHERE $where";
     try {
-        $sql = $query;
-        $result = $pdo->query($sql);
+        $result = $pdo->query($query);
     } catch (PDOException $e) {
         die('Er is een probleem met ophalen van de plaatjes: ' . $e->getMessage());
     }
@@ -80,7 +74,6 @@ function sqlQuery($table, $column, $where='1=1')
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
          return $row[$column];
     }
-
 }
 
 //  Dit stukje code zorgt ervoor voor als we iets toevoegen of iets uit de database verwijderen van slider
@@ -98,7 +91,6 @@ try {
 
 //Cut string in 2 stukken in het midden.
 //ripped functie
-//nog niet getest
 function stringCutter($text)
 {
 
@@ -115,4 +107,20 @@ function stringCutter($text)
     $string2 = substr($text, $middle);  // "Over The Lazy / Dog"
 
     return array($string1, $string2);
+}
+
+//  login script
+
+function login($inputUsername, $inputPassword){
+
+
+        $dbPassword = sqlQuery("users", "PasswordMD5", "Username = '$inputUsername';'");
+
+        if (md5($inputPassword) == $dbPassword) {
+            $_SESSION['LoggedIn'] = true;
+            $_SESSION['username'] = $inputUsername;
+            return "<script>location.reload();</script>"; // Dit werkt, aub niet aanpassen naar een header();
+        } else {
+            return "Verkeerde username en/of wachtwoord.";
+        }
 }
