@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 25 mei 2017 om 15:27
+-- Gegenereerd op: 26 mei 2017 om 17:58
 -- Serverversie: 10.1.21-MariaDB
 -- PHP-versie: 5.6.30
 
@@ -80,6 +80,26 @@ INSERT INTO `slider` (`ID`, `Picture`, `Text`) VALUES
 (1, 'code_banner.png', 'Project Semester 2'),
 (2, 'server_room.jpg', 'Joost, Cees en Maverick');
 
+-- --------------------------------------------------------
+
+--
+-- Tabelstructuur voor tabel `users`
+--
+
+CREATE TABLE `users` (
+  `ID` int(11) NOT NULL,
+  `Username` varchar(30) NOT NULL,
+  `Email` varchar(128) DEFAULT NULL,
+  `PasswordMD5` varchar(128) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Gegevens worden geëxporteerd voor tabel `users`
+--
+
+INSERT INTO `users` (`ID`, `Username`, `Email`, `PasswordMD5`) VALUES
+(1, 'joost', NULL, 'ccf09f3ec68237d3f373421ec3752db6');
+
 --
 -- Indexen voor geëxporteerde tabellen
 --
@@ -103,6 +123,12 @@ ALTER TABLE `slider`
   ADD PRIMARY KEY (`ID`);
 
 --
+-- Indexen voor tabel `users`
+--
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`ID`);
+
+--
 -- AUTO_INCREMENT voor geëxporteerde tabellen
 --
 
@@ -121,6 +147,11 @@ ALTER TABLE `config`
 --
 ALTER TABLE `slider`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT voor een tabel `users`
+--
+ALTER TABLE `users`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
