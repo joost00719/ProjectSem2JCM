@@ -88,7 +88,7 @@ if(!isset($_SESSION['LoggedIn'])) {
                 </h3>
 
                 <h3>
-                    Gegevens aanpassen (alleen email werkt atm)
+                    Gegevens aanpassen
                 </h3>
 
                 <form id="changeForm" method="post">
@@ -148,11 +148,10 @@ if(!isset($_SESSION['LoggedIn'])) {
         }
         //werkt nog niet
         if (isset($_POST['inputNewPassword']) && isset($_POST['inputOldPassword']) && isset($_POST['inputOldPasswordRepeat'])){
-            $realOldPassword = login($loggedInUser, $_POST['inputOldPassword']);
-
-            if($_POST['inputOldPassword'] == $_POST['inputOldPasswordRepeat'] && $_POST['inputOldPassword'] == $realOldPassword) {
+            $realOldPassword = sqlSelect("users", "PasswordMD5", "Username = '$loggedInUser';'");
+            if($_POST['inputOldPassword'] == $_POST['inputOldPasswordRepeat'] && md5($_POST['inputOldPassword']) == $realOldPassword) {
                 $newPassword = md5($_POST['inputNewPassword']);
-                if($realOldPassword == $_POST['inputOldPassword']){
+                if($realOldPassword == md5($_POST['inputOldPassword'])){
                     sqlQuery("UPDATE users SET PasswordMD5 = '$newPassword' WHERE Username = '$loggedInUser';");
                 }
             }
