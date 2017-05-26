@@ -3,12 +3,12 @@ session_start();
 //  Variabele voor makkelijk gebruik in de HTML
 
     //configs
-$title = sqlQuery("config", "ConfigValue", "ConfigIndex = 'Titel'");
-$sliderSpeed = sqlQuery("config", "ConfigValue", "ConfigIndex = 'SliderSpeed'");
+$title = sqlSelect("config", "ConfigValue", "ConfigIndex = 'Titel'");
+$sliderSpeed = sqlSelect("config", "ConfigValue", "ConfigIndex = 'SliderSpeed'");
 
     //artikels
-$articleHomeH1 = sqlQuery("artikel", "h1", "pagina = 'index'");
-$articleHomeText = sqlQuery("artikel","text", "Pagina = 'index'");
+$articleHomeH1 = sqlSelect("artikel", "h1", "pagina = 'index'");
+$articleHomeText = sqlSelect("artikel","text", "Pagina = 'index'");
 
 
 
@@ -61,7 +61,7 @@ function connectDatabase($dbName, $dbLoginName='root', $dbPassword=''){
     return $pdo;
 }
     //Haalt data op uit onze database met database naam Projects2
-function sqlQuery($table, $column, $where='1=1')
+function sqlSelect($table, $column, $where='1=1')
 {
     $pdo = connectDatabase('projects2');
     $query = "SELECT $column FROM $table WHERE $where";
@@ -70,9 +70,18 @@ function sqlQuery($table, $column, $where='1=1')
     } catch (PDOException $e) {
         die('Er is een probleem met ophalen van de plaatjes: ' . $e->getMessage());
     }
-    $array = [];
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
-         return $row[$column];
+        return $row[$column];
+    }
+}
+//  returned niets, is voor de change email en password in login.php
+function sqlQuery($query)
+{
+    $pdo = connectDatabase('projects2');
+    try {
+        $result = $pdo->query($query);
+    } catch (PDOException $e) {
+        die('Database error: ' . $e->getMessage());
     }
 }
 
@@ -93,7 +102,6 @@ try {
 //ripped functie
 function stringCutter($text)
 {
-
     $splitstring1 = substr($text, 0, floor(strlen($text) / 2));
     $splitstring2 = substr($text, floor(strlen($text) / 2));
 
@@ -103,24 +111,21 @@ function stringCutter($text)
         $middle = strrpos(substr($text, 0, floor(strlen($text) / 2)), ' ') + 1;
     }
 
-    $string1 = substr($text, 0, $middle);  // "The Quick : Brown Fox Jumped "
-    $string2 = substr($text, $middle);  // "Over The Lazy / Dog"
+    $string1 = substr($text, 0, $middle);
+    $string2 = substr($text, $middle);
 
     return array($string1, $string2);
 }
 
 //  login script
-
 function login($inputUsername, $inputPassword){
+    $dbPassword = sqlSelect("users", "PasswordMD5", "Username = '$inputUsername';'");
 
-
-        $dbPassword = sqlQuery("users", "PasswordMD5", "Username = '$inputUsername';'");
-
-        if (md5($inputPassword) == $dbPassword) {
-            $_SESSION['LoggedIn'] = true;
-            $_SESSION['username'] = $inputUsername;
-            return "<script>location.reload();</script>"; // Dit werkt, aub niet aanpassen naar een header();
-        } else {
-            return "Verkeerde username en/of wachtwoord.";
-        }
+    if (md5($inputPassword) == $dbPassword) {
+        $_SESSION['LoggedIn'] = true;
+        $_SESSION['username'] = $inputUsername;
+        return "<script>location.reload();</script>"; // Dit werkt, aub niet aanpassen naar een header();
+    } else {
+        return "Verkeerde username en/of wachtwoord.";
+    }
 }

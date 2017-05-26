@@ -70,7 +70,8 @@ if(!isset($_SESSION['LoggedIn'])) {
             <input type="text" name="inputUsername" class="loginInputValue" id="inputUsername"> <br/>
             Password: <br/>
             <input type="password" name="inputPassword" class="loginInputValue" id="inputPassword"> <br/>
-            <input type="submit" class="loginSubmit" value="Inloggen" onsubmit="return false" ">
+            <input type="submit" class="loginSubmit" value="Inloggen"> <br />
+            <a id="aRegistreer" href="registreren.php">Registreer hier</a>
         </form>
         <?php
         if (isset($_POST['inputUsername']) && isset($_POST['inputPassword'])) {
@@ -78,7 +79,7 @@ if(!isset($_SESSION['LoggedIn'])) {
             $inputPassword = $_POST['inputPassword'];
             echo login($inputUsername, $inputPassword);
         }
-
+        ?> </div> <?php
         } else {
             ?>
             <div id="userSettings">
@@ -86,15 +87,79 @@ if(!isset($_SESSION['LoggedIn'])) {
                     Welkom op het gebruikerspaneel, <?= $loggedInUser; ?>
                 </h3>
 
+                <h3>
+                    Gegevens aanpassen (alleen email werkt atm)
+                </h3>
 
-
-
-
+                <form id="changeForm" method="post">
+                    <table>
+                        <tr>
+                            <h4>
+                                Verander Email adres
+                            </h4>
+                        </tr>
+                        <tr>
+                            <td>
+                                Nieuw Email adres
+                            </td>
+                            <td>
+                                <input type="email" name="inputNewEmail" class="loginInputValue">
+                            </td>
+                        </tr>
+                    </table>
+                    <table>
+                        <tr>
+                            <h4>
+                                Verander wachtwoord
+                            </h4>
+                        </tr>
+                        <tr>
+                            <td>
+                                Nieuw wachtwoord
+                            </td>
+                            <td>
+                                <input type="password" name="inputNewPassword" class="loginInputValue">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Oud wachtwoord
+                            </td>
+                            <td>
+                                <input type="password" name="inputOldPassword" class="loginInputValue">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                Herhaling oud wachtwoord
+                            </td>
+                            <td>
+                                <input type="password" name="inputOldPasswordRepeat" class="loginInputValue">
+                            </td>
+                        </tr>
+                    </table>
+                    <input type="submit">
+                </form>
             </div>
             <?php
+        if (isset($_POST['inputNewEmail'])){
+            $newMail = $_POST['inputNewEmail'];
+            sqlQuery("UPDATE users SET Email = '$newMail' WHERE Username = '$loggedInUser'");
+        }
+        //werkt nog niet
+        if (isset($_POST['inputNewPassword']) && isset($_POST['inputOldPassword']) && isset($_POST['inputOldPasswordRepeat'])){
+            $realOldPassword = login($loggedInUser, $_POST['inputOldPassword']);
+
+            if($_POST['inputOldPassword'] == $_POST['inputOldPasswordRepeat'] && $_POST['inputOldPassword'] == $realOldPassword) {
+                $newPassword = md5($_POST['inputNewPassword']);
+                if($realOldPassword == $_POST['inputOldPassword']){
+                    sqlQuery("UPDATE users SET PasswordMD5 = '$newPassword' WHERE Username = '$loggedInUser';");
+                }
+            }
+        }
         }
         ?>
-</div>
+
 <!-- Footer -->
 <footer>
     <?php require 'assets/phpFiles/footer.php'; ?>
