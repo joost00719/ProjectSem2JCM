@@ -19,8 +19,6 @@ if(isset($_SESSION['username'])){
     $loggedInUser = "Login";
 }
 
-
-
 //functions
 
 //haalt jaar op

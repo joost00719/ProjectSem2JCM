@@ -123,22 +123,22 @@ if(!isset($_SESSION['LoggedIn'])) {
                         </tr>
                         <tr>
                             <td>
-                                Oud wachtwoord
+                                herhaling nieuw wachtwoord
                             </td>
                             <td>
-                                <input type="password" name="inputOldPassword" class="loginInputValue">
+                                <input type="password" name="InputNewPasswordRepeat" class="loginInputValue">
                             </td>
                         </tr>
                         <tr>
                             <td>
-                                Herhaling oud wachtwoord
+                                old wachtwoord
                             </td>
                             <td>
-                                <input type="password" name="inputOldPasswordRepeat" class="loginInputValue">
+                                <input type="password" name="InputOldPassword" class="loginInputValue">
                             </td>
                         </tr>
                     </table>
-                    <input type="submit">
+                    <input type="submit" class="loginSubmit">
                 </form>
             </div>
             <?php
@@ -146,14 +146,13 @@ if(!isset($_SESSION['LoggedIn'])) {
             $newMail = $_POST['inputNewEmail'];
             sqlQuery("UPDATE users SET Email = '$newMail' WHERE Username = '$loggedInUser'");
         }
-        //werkt nog niet
-        if (isset($_POST['inputNewPassword']) && isset($_POST['inputOldPassword']) && isset($_POST['inputOldPasswordRepeat'])){
-            $realOldPassword = sqlSelect("users", "PasswordMD5", "Username = '$loggedInUser';'");
-            if($_POST['inputOldPassword'] == $_POST['inputOldPasswordRepeat'] && md5($_POST['inputOldPassword']) == $realOldPassword) {
+        //works, need improvements
+        if (isset($_POST['inputNewPassword']) && isset($_POST['InputNewPasswordRepeat']) && isset($_POST['InputOldPassword'])){
+            print_r("code executing");
+            $originalPassword = sqlSelect("users", "PasswordMD5", "Username = '$loggedInUser';'");
+            if(md5($_POST['InputOldPassword']) == $originalPassword) {
                 $newPassword = md5($_POST['inputNewPassword']);
-                if($realOldPassword == md5($_POST['inputOldPassword'])){
                     sqlQuery("UPDATE users SET PasswordMD5 = '$newPassword' WHERE Username = '$loggedInUser';");
-                }
             }
         }
         }
