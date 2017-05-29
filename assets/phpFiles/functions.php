@@ -66,7 +66,7 @@ function sqlSelect($table, $column, $where='1=1')
     try {
         $result = $pdo->query($query);
     } catch (PDOException $e) {
-        die('Er is een probleem met ophalen van de plaatjes: ' . $e->getMessage());
+        die('Er is een probleem met ophalen van de selectie: ' . $e->getMessage());
     }
     while ($row = $result->fetch(PDO::FETCH_ASSOC)) {
         return $row[$column];
@@ -92,7 +92,7 @@ try {
     $sql = $query;
     $result = $pdo->query($sql);
 } catch (PDOException $e) {
-    die('Er is een probleem met ophalen van de plaatjes: ' . $e->getMessage());
+    die('Database error: ' . $e->getMessage());
 }
 
 
