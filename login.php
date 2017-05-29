@@ -126,7 +126,7 @@ if(!isset($_SESSION['LoggedIn'])) {
                                 herhaling nieuw wachtwoord
                             </td>
                             <td>
-                                <input type="password" name="InputNewPasswordRepeat" class="loginInputValue">
+                                <input type="password" name="inputNewPasswordRepeat" class="loginInputValue">
                             </td>
                         </tr>
                         <tr>
@@ -134,7 +134,7 @@ if(!isset($_SESSION['LoggedIn'])) {
                                 oud wachtwoord
                             </td>
                             <td>
-                                <input type="password" name="InputOldPassword" class="loginInputValue">
+                                <input type="password" name="inputOldPassword" class="loginInputValue">
                             </td>
                         </tr>
                     </table>
@@ -147,12 +147,17 @@ if(!isset($_SESSION['LoggedIn'])) {
             sqlQuery("UPDATE users SET Email = '$newMail' WHERE Username = '$loggedInUser'");
         }
         //works, need improvements
-        if (isset($_POST['inputNewPassword']) && isset($_POST['InputNewPasswordRepeat']) && isset($_POST['InputOldPassword'])){
+        if (isset($_POST['inputNewPassword']) && isset($_POST['inputNewPasswordRepeat']) && isset($_POST['inputOldPassword'])){
             $originalPassword = sqlSelect("users", "PasswordMD5", "Username = '$loggedInUser';'");
-            if(md5($_POST['InputOldPassword']) == $originalPassword) {
+            if(md5($_POST['inputOldPassword']) == $originalPassword && $_POST['inputNewPassword'] == $_POST['inputNewPasswordRepeat']) {
                 $newPassword = md5($_POST['inputNewPassword']);
                     sqlQuery("UPDATE users SET PasswordMD5 = '$newPassword' WHERE Username = '$loggedInUser';");
             }
+            else{
+                echo "Probeer het opnieuw. <br />";
+            }
+        }
+        else{
         }
         }
         ?>
