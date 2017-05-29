@@ -131,7 +131,7 @@ if(!isset($_SESSION['LoggedIn'])) {
                         </tr>
                         <tr>
                             <td>
-                                old wachtwoord
+                                oud wachtwoord
                             </td>
                             <td>
                                 <input type="password" name="InputOldPassword" class="loginInputValue">
@@ -148,7 +148,6 @@ if(!isset($_SESSION['LoggedIn'])) {
         }
         //works, need improvements
         if (isset($_POST['inputNewPassword']) && isset($_POST['InputNewPasswordRepeat']) && isset($_POST['InputOldPassword'])){
-            print_r("code executing");
             $originalPassword = sqlSelect("users", "PasswordMD5", "Username = '$loggedInUser';'");
             if(md5($_POST['InputOldPassword']) == $originalPassword) {
                 $newPassword = md5($_POST['inputNewPassword']);
