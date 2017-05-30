@@ -29,7 +29,7 @@ if(!isset($_SESSION['LoggedIn'])) {
     <script src="js/jquery.js"></script>
 
     <!-- Javascript for login -->
-    <script src="js/loginSubmit.js"></script>
+    <script src="js/login.js"></script>
 
     <!-- Bootstrap Core JavaScript -->
     <script src="js/bootstrap.min.js"></script>
@@ -91,7 +91,7 @@ if(!isset($_SESSION['LoggedIn'])) {
                     Gegevens aanpassen
                 </h3>
 
-                <form id="changeForm" method="post">
+                <form id="changeForm" method="post" id="test123">
                     <table>
                         <tr>
                             <h4>
