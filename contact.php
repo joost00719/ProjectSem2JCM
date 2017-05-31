@@ -43,27 +43,26 @@ require "assets/phpFiles/functions.php";
 //  Text splitter, returned array.
 $ArticleCutted = stringCutter($articleHomeText);
 ?>
-<div class="container" style="padding:20px;>
+<div class="container" style="padding:20px;">
+    <div class="row">
+        <div class="col-lg-12">
+            <!-- Titel van het artikel -->
+            <div class="col-xs-12"><h1> <?= $articleHomeH1; ?> </h1></div>
+            <div class="col-md-6 col-sm-12">
+                <!-- Linker kant van artikel -->
+                <div class="col-xs-12" style="text-align: justify"><?= $ArticleCutted[0]; ?></div>
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <!-- Rechter kant van het artikel -->
+                <div class="col-xs-12" style="text-align: justify"><?= $ArticleCutted[1]; ?></div>
+            </div>
+        </div>
+    </div>
+    <!-- Footer -->
 
-        <div class="row">
-<div class="col-lg-12">
-    <!-- Titel van het artikel -->
-    <div class="col-xs-12"><h1> <?= $articleHomeH1; ?> </h1></div>
-    <div class="col-md-6 col-sm-12">
-        <!-- Linker kant van artikel -->
-        <div class="col-xs-12" style="text-align: justify"><?= $ArticleCutted[0]; ?></div>
-    </div>
-    <div class="col-md-6 col-sm-12">
-        <!-- Rechter kant van het artikel -->
-        <div class="col-xs-12" style="text-align: justify"><?= $ArticleCutted[1]; ?></div>
-    </div>
-</div>
-</div>
-<hr>
-<!-- Footer -->
-<footer>
-    <?php require 'assets/phpFiles/footer.php'; ?>
-</footer>
+    <footer>
+        <?php require 'assets/phpFiles/footer.php'; ?>
+    </footer>
 </div>
 <!-- /.container -->
 <!-- jQuery -->
