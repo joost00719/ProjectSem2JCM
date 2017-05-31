@@ -1,9 +1,17 @@
 $(document).ready(function(){
 
-    //  Werkt niet met ID's en Classes, dus hopelijk kan iemand dat fixen ;)
-    $("form").submit(function(){
-        alert("Submitted");
-        return false;
+    //  login form code
+    $("#loginContainer > form").submit(function(){
+
+
+        return;
+    });
+
+    //  user panel code
+    $("#userSettings > form").submit(function(){
+
+
+        return;
     });
 
 

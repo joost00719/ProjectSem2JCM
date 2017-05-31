@@ -4,15 +4,14 @@
     <!-- Slides + indicators -->
     <?php
     //haalt de database table slider uit database en zet in $sliderDB
-
-
-    for ($i = 1; $i < (sqlSelect("slider", "count(*)") +1); $i++) {
+    $slider = sqlQuery("SELECT * FROM slider");
+    for ($i = 0; $i < (count($slider) - 1 ); $i++) {
     ?>
         <!-- Slider -->
-    <div class="item <?php if($i==1){echo 'active';}?>">
-            <div class="fill" style="background-image:url(assets/images/<?= sqlSelect("slider","Picture","ID = $i"); ?>)"></div>
+    <div class="item <?php if($i==0){echo 'active';}?>">
+            <div class="fill" style="background-image:url(assets/images/<?= $slider[$i]['Picture']; ?>)"></div>
             <div class="carousel-caption">
-                <h2> <?= sqlSelect("slider","Text", "ID = $i"); ?> </h2>
+                <h2> <?= $slider[$i]['Text']; ?> </h2>
             </div>
         </div>
         <?php } ?>
@@ -22,7 +21,7 @@
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <?php
             //indicators for slides
-            for ($i = 1; $i < sqlSelect("slider", "count(*)"); $i++) { ?>
+            for ($i = 1; $i < (count($slider) - 1); $i++) { ?>
                 <li data-target="#myCarousel" data-slide-to="<?= $i; ?>"></li>
                 <?php } ?>
         </ol>

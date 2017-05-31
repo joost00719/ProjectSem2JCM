@@ -81,6 +81,9 @@ function sqlQuery($query)
     } catch (PDOException $e) {
         die('Database error: ' . $e->getMessage());
     }
+    $array = $result->fetchAll();
+    $array['num'] = $result->rowCount($query);
+    return $array;
 }
 
 //  Dit stukje code zorgt ervoor voor als we iets toevoegen of iets uit de database verwijderen van slider

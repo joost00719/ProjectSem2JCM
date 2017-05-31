@@ -91,7 +91,7 @@ if(!isset($_SESSION['LoggedIn'])) {
                     Gegevens aanpassen
                 </h3>
 
-                <form id="changeForm" method="post" id="test123">
+                <form id="changeForm" method="post">
                     <table>
                         <tr>
                             <h4>
