@@ -2,6 +2,7 @@
 session_start();
 //  Variabele voor makkelijk gebruik in de HTML
 
+//  moet nog efficienter gemaakt worden
     //configs
 $title = sqlSelect("config", "ConfigValue", "ConfigIndex = 'Titel'");
 $sliderSpeed = sqlSelect("config", "ConfigValue", "ConfigIndex = 'SliderSpeed'");
@@ -19,27 +20,30 @@ if(isset($_SESSION['username'])){
     $loggedInUser = "Login";
 }
 
+#   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #   #
 //functions
 
-//haalt jaar op
-function getYear(){
-    return date("Y");
-}
 
-//kijkt welke getparm in page zit.
-function getPage(){
-
-    if (isset($_GET['page'])) {
-        $currentPage = $_GET['page'];
-        return $currentPage;
-        };
-};
-//redirect je naar pagina, basically useless
-function redirect($par)
+//Cut string in 2 stukken in het midden.
+//ripped functie
+function stringCutter($text)
 {
-    header("location: $par");
+    $splitstring1 = substr($text, 0, floor(strlen($text) / 2));
+    $splitstring2 = substr($text, floor(strlen($text) / 2));
+
+    if (substr($splitstring1, 0, -1) != ' ' AND substr($splitstring2, 0, 1) != ' ') {
+        $middle = strlen($splitstring1) + strpos($splitstring2, ' ') + 1;
+    } else {
+        $middle = strrpos(substr($text, 0, floor(strlen($text) / 2)), ' ') + 1;
+    }
+    $string1 = substr($text, 0, $middle);
+    $string2 = substr($text, $middle);
+
+    return array($string1, $string2);
 }
 
+
+        ###     Database functies       ###
 
 //Connectie naar je database functie
 function connectDatabase($dbName, $dbLoginName='root', $dbPassword=''){
@@ -55,7 +59,6 @@ function connectDatabase($dbName, $dbLoginName='root', $dbPassword=''){
     } catch (PDOException $e) {
         die('Database error > ' . $e->getMessage());
     }
-
     return $pdo;
 }
     //Haalt data op uit onze database met database naam Projects2
@@ -89,6 +92,7 @@ function sqlQuery($query)
 //  Dit stukje code zorgt ervoor voor als we iets toevoegen of iets uit de database verwijderen van slider
 //  dat het id gewoon goed blijft, dit wordt telkens uitgevoerd wanneer de pagnia wordt geopend (inefficient as fuck, i know)
 //  maar dit werkt dus don't touch it, is voor het gemak van de database aanpassen enzo.
+/*
 $pdo = connectDatabase('projects2');
 $query = "SET @num := 0; UPDATE slider SET id = @num := (@num+1); ALTER TABLE slider AUTO_INCREMENT = 1;";
 try {
@@ -97,27 +101,10 @@ try {
 } catch (PDOException $e) {
     die('Database error: ' . $e->getMessage());
 }
+*/
 
 
-//Cut string in 2 stukken in het midden.
-//ripped functie
-function stringCutter($text)
-{
-    $splitstring1 = substr($text, 0, floor(strlen($text) / 2));
-    $splitstring2 = substr($text, floor(strlen($text) / 2));
-
-    if (substr($splitstring1, 0, -1) != ' ' AND substr($splitstring2, 0, 1) != ' ') {
-        $middle = strlen($splitstring1) + strpos($splitstring2, ' ') + 1;
-    } else {
-        $middle = strrpos(substr($text, 0, floor(strlen($text) / 2)), ' ') + 1;
-    }
-
-    $string1 = substr($text, 0, $middle);
-    $string2 = substr($text, $middle);
-
-    return array($string1, $string2);
-}
-
+        ###     Login functies      ###
 //  login script
 function login($inputUsername, $inputPassword){
     $dbPassword = sqlSelect("users", "PasswordMD5", "Username = '$inputUsername';'");

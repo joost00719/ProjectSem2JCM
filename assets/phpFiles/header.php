@@ -25,7 +25,6 @@
                 <li data-target="#myCarousel" data-slide-to="<?= $i; ?>"></li>
                 <?php } ?>
         </ol>
-
     </div>
 
     <!-- Controls -->
