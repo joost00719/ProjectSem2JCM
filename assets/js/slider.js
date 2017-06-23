@@ -1,6 +1,6 @@
 $(function () {
 
-function (n) {
+function ddd(n) {
     $(".active").next().addClass("active");
     $(".active").removeClass("active");
 
