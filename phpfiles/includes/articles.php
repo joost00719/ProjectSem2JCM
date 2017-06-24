@@ -1,27 +1,50 @@
+<?php
+$articleArray = sqlQuery("SELECT * FROM artikel");
+try {
+    $artikel1 = $articleArray[0]['text'];
+    $artikel2 = $articleArray[1]['text'];
+    $artikel3 = $articleArray[2]['text'];
+    $artikel4 = $articleArray[3]['text'];
+    $artikel5 = $articleArray[4]['text'];
+}catch(exception $e){
+}
+
+?>
 <div id="articles">
     <table>
         <tr>
-            <td>
-                <article>
-                    First Article
+            <td id="firstArticle">
+                <article id="a1">
+                    <?=$artikel1;?>
                 </article>
             </td>
             <td>
-                <article>
-                    Second Article
+                <article id="a2">
+                    <?=$artikel2;?>
                 </article>
             </td>
         </tr>
+    </table>
+    <table>
         <tr>
             <td>
-                3
+                <article id="a3">
+                    <?=$artikel3;?>
+                </article>
             </td>
             <td>
-                4
+                <article id="a4">
+                    <?=$artikel4;?>
+                </article>
             </td>
             <td>
-                5
+                <article id="a5">
+                    <?=$artikel5;?>
+                </article>
             </td>
         </tr>
     </table>
 </div>
+<style>
+
+</style>

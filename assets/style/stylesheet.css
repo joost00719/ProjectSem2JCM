@@ -26,8 +26,6 @@ nav > a > object{
 nav > a:visited{
     color: transparent;
     height:100px;
-
-
 }
 nav > a{
     color: transparent;
@@ -43,6 +41,9 @@ nav > a{
     left: 45%;
     font-size: 4em;
 }
+.hidden{
+    display: hidden;
+}
 #articles{
     display: inline-block;
     position: relative;
@@ -54,6 +55,17 @@ nav > a{
 #articles > table{
     width:100%;
 }
-#articles > td{
-    background-color: rgba(0,0,0,0.70);
+#firstArticle{
+    width:67%;
+}
+article{
+    padding:30px;
+}
+article > img{
+    max-width:400px;
+    max-height:400px;
+}
+#firstArticleArticle{
+    background-image: url("https://www.npo3fm.nl/images/archief/go.3fm.nl/2016-06/9427_festival-algemeen.jpg");
+    background-size: cover;
 }
