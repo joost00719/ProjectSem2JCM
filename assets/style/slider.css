@@ -1,9 +1,0 @@
-.sliderImage{
-    display: none;
-    background-size: cover;
-    background-position: center;
-    height: 40vh;
-}
-.active{
-    display: block;
-}

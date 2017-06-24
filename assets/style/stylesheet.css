@@ -1,10 +1,19 @@
 body{
     margin:0px;
+    background-image: url("../images/pablo-heimplatz-243307.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: black;
+    background-attachment: fixed;
+    color: white;
+}
+.center{
+    text-align-last: center;
 }
 nav{
     width:100%;
-    height:70.5vh;
-    background-color: black;
+    height:10vh;
+    background-color: rgba(0,0,0,0.70);
     color: white;
     position: fixed;
 }
@@ -14,6 +23,37 @@ nav > a > object{
     height:7vh;
     width:7%;
 }
-a{
+nav > a:visited{
+    color: transparent;
+    height:100px;
+
+
+}
+nav > a{
+    color: transparent;
+    background-color: blue;
+    height: 100px
+}
+.menuUser{
+    position: relative;
+    left: 64%;
+}
+#userName {
+    position: relative;
+    left: 45%;
+    font-size: 4em;
+}
+#articles{
     display: inline-block;
+    position: relative;
+    top:1500px;
+    height: auto;
+    width:80%;
+    background-color: rgba(0,0,0,0.70);
+}
+#articles > table{
+    width:100%;
+}
+#articles > td{
+    background-color: rgba(0,0,0,0.70);
 }
