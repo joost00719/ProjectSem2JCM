@@ -30,6 +30,16 @@ require "phpfiles/includes/slider.php";
     require "phpfiles/includes/contact.php";
     ?>
 </div>
+<div class="center">
+    <?php
+        require "phpfiles/includes/over.php";
+    ?>
+</div>
+<div class="center">
+    <?php
+    require "phpfiles/includes/footer.php";
+    ?>
+</div>
 
 </body>
 </html>

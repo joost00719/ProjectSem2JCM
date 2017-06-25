@@ -1,6 +1,5 @@
 <?php
 $articleArray = sqlQuery("SELECT * FROM artikel");
-try {
     if(empty($articleArray[0]['text'])){
         $kop1 = "";
         $artikel1 = "";
@@ -41,8 +40,6 @@ try {
         $kop5 = $articleArray[4]['h1'];
     }
     ///////////////////////////////////////////////////////
-}catch(exception $e){
-}
 
 ?>
 <div id="articles">
