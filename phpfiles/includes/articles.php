@@ -1,7 +1,12 @@
 <?php
 $articleArray = sqlQuery("SELECT * FROM artikel");
 try {
-    $artikel1 = $articleArray[0]['text'];
+    if(empty($articleArray[0]['text'])){
+        $kop1 = "";
+        $artikel1 = "";
+    }else{
+        $artikel1 = $articleArray[0]['text'];
+    }
     $artikel2 = $articleArray[1]['text'];
     $artikel3 = $articleArray[2]['text'];
     $artikel4 = $articleArray[3]['text'];
