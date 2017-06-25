@@ -25,7 +25,11 @@ require "phpfiles/includes/slider.php";
     require "phpfiles/includes/articles.php";
     ?>
 </div>
-
+<div class="center">
+    <?php
+    require "phpfiles/includes/contact.php";
+    ?>
+</div>
 
 </body>
 </html>

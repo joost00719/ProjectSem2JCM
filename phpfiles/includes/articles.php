@@ -46,6 +46,7 @@ try {
 
 ?>
 <div id="articles">
+    <a name="content"></a>
     <table>
         <tr>
             <td id="firstArticle">

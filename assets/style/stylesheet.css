@@ -16,6 +16,7 @@ nav{
     background-color: rgba(0,0,0,0.70);
     color: white;
     position: fixed;
+    z-index: 100;
 }
 nav > a > object{
     pointer-events: none;
@@ -47,7 +48,7 @@ nav > a{
 #articles{
     display: inline-block;
     position: relative;
-    top:1500px;
+    top:800px;
     height: auto;
     width:80%;
     background-color: rgba(0,0,0,0.70);
@@ -69,3 +70,44 @@ article > img{
     background-image: url("https://www.npo3fm.nl/images/archief/go.3fm.nl/2016-06/9427_festival-algemeen.jpg");
     background-size: cover;
 }
+#contactDiv{
+     display: inline-block;
+     position: relative;
+     top:1600px;
+     height: auto;
+     width:80%;
+     background-color: rgba(0,0,0,0.70);
+ }
+/*
+CSS Contact
+ */
+
+.contactInput{
+    background-color: rgba(0,0,0,0.70);
+    color: white;
+    font-size: 1em;
+    text-align-last: left;
+}
+#tableContact{
+    display: inline-block;
+    padding:20px;
+    font-size: 3em;
+    text-align-last: left;
+}
+#inputTextBericht{
+    margin: 0px;
+    height: 58px;
+    width: 582px;
+    background-color: rgba(0,0,0,0.70);
+    color: white;
+    text-align-last: left;
+}
+
+
+
+
+
+
+
+
+
