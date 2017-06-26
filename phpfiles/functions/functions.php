@@ -1,17 +1,5 @@
 <?php
 session_start();
-//  Variabele voor makkelijk gebruik in de HTML
-
-//  moet nog efficienter gemaakt worden
-    //configs
-$title = sqlSelect("config", "ConfigValue", "ConfigIndex = 'Titel'");
-$sliderSpeed = sqlSelect("config", "ConfigValue", "ConfigIndex = 'SliderSpeed'");
-
-    //artikels
-$articleHomeH1 = sqlSelect("artikel", "h1", "pagina = 'index'");
-$articleHomeText = sqlSelect("artikel","text", "Pagina = 'index'");
-
-
 
 //  pre defined variables
 if(isset($_SESSION['username'])){
@@ -65,7 +53,7 @@ function connectDatabase($dbName, $dbLoginName='root', $dbPassword=''){
     //niet gefilterd omdat dit niet wordt gebruikt door de gebruiker.
 function sqlSelect($table, $column, $where='1=1')
 {
-    $pdo = connectDatabase('projects2');
+    $pdo = connectDatabase('festival');
     $query = "SELECT $column FROM $table WHERE $where";
     try {
         $result = $pdo->query($query);
@@ -79,7 +67,7 @@ function sqlSelect($table, $column, $where='1=1')
 //  returned niets, is voor de change email en password in login.php
 function sqlQuery($query)
 {
-    $pdo = connectDatabase('projects2');
+    $pdo = connectDatabase('festival');
     try {
         $result = $pdo->query($query);
     } catch (PDOException $e) {
@@ -89,20 +77,6 @@ function sqlQuery($query)
     $array['num'] = $result->rowCount($query);
     return $array;
 }
-
-//  Dit stukje code zorgt ervoor voor als we iets toevoegen of iets uit de database verwijderen van slider
-//  dat het id gewoon goed blijft, dit wordt telkens uitgevoerd wanneer de pagnia wordt geopend (inefficient as fuck, i know)
-//  maar dit werkt dus don't touch it, is voor het gemak van de database aanpassen enzo.
-/*
-$pdo = connectDatabase('projects2');
-$query = "SET @num := 0; UPDATE slider SET id = @num := (@num+1); ALTER TABLE slider AUTO_INCREMENT = 1;";
-try {
-    $sql = $query;
-    $result = $pdo->query($sql);
-} catch (PDOException $e) {
-    die('Database error: ' . $e->getMessage());
-}
-*/
 
 
         ###     Login functies      ###

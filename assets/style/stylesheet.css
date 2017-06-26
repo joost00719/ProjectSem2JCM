@@ -1,12 +1,22 @@
 body{
     margin:0px;
+    background-image: url("../images/pablo-heimplatz-243307.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-color: black;
+    background-attachment: fixed;
+    color: white;
+}
+.center{
+    text-align-last: center;
 }
 nav{
     width:100%;
-    height:70.5vh;
-    background-color: black;
+    height:10vh;
+    background-color: rgba(0,0,0,0.70);
     color: white;
     position: fixed;
+    z-index: 100;
 }
 nav > a > object{
     pointer-events: none;
@@ -14,6 +24,135 @@ nav > a > object{
     height:7vh;
     width:7%;
 }
-a{
-    display: inline-block;
+nav > a:visited{
+    color: transparent;
+    height:100px;
 }
+nav > a{
+    color: transparent;
+    background-color: blue;
+    height: 100px
+}
+.menuUser{
+    position: relative;
+    left: 64%;
+}
+#userName {
+    position: relative;
+    left: 45%;
+    font-size: 4em;
+}
+.hidden{
+    display: hidden;
+}
+#articles{
+    display: inline-block;
+    position: relative;
+    top:800px;
+    height: auto;
+    width:80%;
+    background-color: rgba(0,0,0,0.70);
+}
+#articles > table{
+    width:100%;
+}
+#firstArticle{
+    width:67%;
+}
+article{
+    padding:30px;
+}
+article > img{
+    max-width:400px;
+    max-height:400px;
+}
+#firstArticleArticle{
+    background-image: url("https://www.npo3fm.nl/images/archief/go.3fm.nl/2016-06/9427_festival-algemeen.jpg");
+    background-size: cover;
+}
+#contactDiv{
+     display: inline-block;
+     position: relative;
+     top:1600px;
+     height: auto;
+     width:80%;
+     background-color: rgba(0,0,0,0.70);
+ }
+/*
+CSS Contact
+ */
+
+.contactInput{
+    background-color: rgba(0,0,0,0.70);
+    color: white;
+    font-size: 1em;
+    text-align-last: left;
+}
+#tableContact{
+    display: inline-block;
+    padding:20px;
+    font-size: 3em;
+    text-align-last: left;
+}
+#inputTextBericht{
+    margin: 0px;
+    height: 58px;
+    width: 582px;
+    background-color: rgba(0,0,0,0.70);
+    color: white;
+    text-align-last: left;
+}
+/*
+over ons
+ */
+#over{
+    display: inline-block;
+    position: relative;
+    top:2400px;
+    height: auto;
+    width:80%;
+    background-color: rgba(0,0,0,0.70);
+    margin-bottom: 200px;
+}
+#over1{
+    height:auto;
+    padding:5%;
+    text-align: justify;
+}
+#over2{
+    height:auto;
+    padding:5%;
+}
+#overtable{
+    width:100%;
+}
+/*
+footer
+ */
+#footer{
+    padding:20px;
+    display: inline-block;
+    position: fixed;
+    bottom:0px;
+    height: auto;
+    width:100%;
+    background-color: rgba(0,0,0,0.70);
+}
+
+/*
+CSS niet werkende slider :D
+ */
+#slider{
+    display: inline-block;
+    position: relative;
+    top:10vh;
+    height: 400px;
+    width:100%;
+    background-color: black;
+    margin-bottom: 200px;
+}
+
+
+
+
+

@@ -1,6 +1,6 @@
 <?php
-require "phpfiles/functions/database/funcDatabase.php";
 require "phpfiles/functions/functions.php";
+$username = "Joost";
 ?>
 
 <!DOCTYPE html>
@@ -11,12 +11,34 @@ require "phpfiles/functions/functions.php";
     <link href="assets/style/stylesheet.css" rel="stylesheet">
     <link href="assets/style/slider.css" rel="stylesheet">
     <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/script.js"></script>
     <script src="assets/js/slider.js"></script>
 </head>
 <body>
 <?php
-require "assets/parts/slider.php";
+require "phpfiles/includes/nav.php";
+require "phpfiles/includes/slider.php";
 ?>
+<div class="center">
+    <?php
+    require "phpfiles/includes/articles.php";
+    ?>
+</div>
+<div class="center">
+    <?php
+    require "phpfiles/includes/contact.php";
+    ?>
+</div>
+<div class="center">
+    <?php
+        require "phpfiles/includes/over.php";
+    ?>
+</div>
+<div class="center">
+    <?php
+    require "phpfiles/includes/footer.php";
+    ?>
+</div>
 
 </body>
 </html>
