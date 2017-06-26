@@ -6,6 +6,8 @@ body{
     background-color: black;
     background-attachment: fixed;
     color: white;
+    position: absolute;
+    top:0px;
 }
 .center{
     text-align-last: center;
@@ -151,7 +153,9 @@ CSS niet werkende slider :D
     background-color: black;
     margin-bottom: 200px;
 }
-
+#logindiv{
+    margin-top:100px;
+}
 
 
 

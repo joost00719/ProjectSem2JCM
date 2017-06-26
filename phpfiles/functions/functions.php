@@ -64,7 +64,7 @@ function sqlSelect($table, $column, $where='1=1')
         return $row[$column];
     }
 }
-//  returned niets, is voor de change email en password in login.php
+//  returned niets, is voor de change email en password in register.php
 function sqlQuery($query)
 {
     $pdo = connectDatabase('festival');
@@ -93,4 +93,13 @@ function login($inputUsername, $inputPassword){
     } else {
         return "Verkeerde username en/of wachtwoord.";
     }
+}
+function encryptor($password, $kleur){
+    $password = strrev($password);
+    $password = $password.md5($kleur);
+    $password = strrev($password);
+    $password = hash("md5", $password);
+    $password = strrev($password);
+    $password = hash("sha256", $password);
+    return $password;
 }
