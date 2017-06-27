@@ -3,7 +3,7 @@
     Contact
 </h1>
     <a name="contact"></a>
-    <form action="submitContact.php" class="center" method="post">
+    <form action="phpfiles/functions/submitContact.php" class="center" method="post">
         <table id="tableContact">
             <tr>
                 <td>
