@@ -49,8 +49,8 @@ function sqlRegistreer($username, $password, $email){
         die('Fout bij het wijzigen van een rij: ' . $e->getMessage());
 
     }
-
+header("location: ../../login.php");
 }
 
-//header("location: ../../index.php");
+header("location: ../../index.php");
 ?>

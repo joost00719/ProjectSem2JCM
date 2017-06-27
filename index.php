@@ -39,6 +39,5 @@ require "phpfiles/includes/slider.php";
     require "phpfiles/includes/footer.php";
     ?>
 </div>
-
 </body>
 </html>
